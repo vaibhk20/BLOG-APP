@@ -4,9 +4,9 @@ var app = express();
 var expressSanitizer = require("express-sanitizer");
 var bodyParser = require("body-parser");
 const multer = require("multer");
-const upload = multer({dest: "uploads/"});
+const upload = multer({ dest: "uploads/" });
 var mongoose = require("mongoose");
-var flash = require("connect-flash"); 
+var flash = require("connect-flash");
 var Blog = require("./models/blog");
 var Comment = require("./models/comment");
 const blog = require("./models/blog");
@@ -16,48 +16,50 @@ var LocalStrategy = require("passport-local");
 var passportLocalMongoose = require("passport-local-mongoose");
 
 var commentRoutes = require("./routes/comments.js"),
-    blogRoutes = require("./routes/blogs"),
-    authRoutes = require("./routes/auth")
+  blogRoutes = require("./routes/blogs"),
+  authRoutes = require("./routes/auth");
 
 //CONNECTION
 //mongoose.connect('mongodb://127.0.0.1:27017/blog', {useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect('mongodb+srv://Thejus:<sH1q2VbhPltJhawf>@blogapp.jhhat.mongodb.net/<blog>?retryWrites=true&w=majority ', {useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb://localhost:27017/blog", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
-
-app.use(bodyParser.urlencoded({extended: true}));
-app.set("view engine","ejs");
+app.use(bodyParser.urlencoded({ extended: true }));
+app.set("view engine", "ejs");
 app.use(expressSanitizer());
 app.use(methodOverride("_method"));
 app.use(flash());
 
-app.use(require("express-session")({
-	secret: "Sports page",
-	resave: false,
-	saveUninitialized: false 
-}));
+app.use(
+  require("express-session")({
+    secret: "Sports page",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new LocalStrategy(User.authenticate()))
+passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.use(function(req,res,next)
-{
-    res.locals.currentUser = req.user;
-    res.locals.error = req.flash("error");
-    res.locals.success = req.flash("success")
-    next();
-})
+app.use(function (req, res, next) {
+  res.locals.currentUser = req.user;
+  res.locals.error = req.flash("error");
+  res.locals.success = req.flash("success");
+  next();
+});
 
 app.use(blogRoutes);
 app.use(commentRoutes);
 app.use(authRoutes);
 
-//PORT CONNECTION 
-let port = 13579;
-app.listen(process.env.PORT | port, process.env.IP, function()
-{
-    console.log("Yelpcamp app has started at localhost:" + port);
+//PORT CONNECTION
+let port = 3002;
+app.listen(process.env.PORT | port, process.env.IP, function () {
+  console.log("Yelpcamp app has started at localhost:" + port);
 });

@@ -9,8 +9,10 @@
     <body>
         <div class="ui inverted menu">
           <div class=" compact item">
-            <i class = "big compact teal edit icon"></i>
-            Blog
+            <a href="/">
+              <i class = "big compact white edit icon"></i>
+              Blog
+            </a>   
           </div>
           <a href="/" class=" red item">
             Home
@@ -19,7 +21,7 @@
             New Post
           </a>
           
-          <div class=" right menu">
+          <div class="right menu">
               <%if(!currentUser){%>
                 <div class="item">
                   <a href="/login" class="ui compact inverted button">Log in</a>
@@ -29,7 +31,7 @@
                 </div>
               <%} else{%>
                 <div class="item">
-                  <div href="#">Signed in as <%=currentUser.username%> <i class="large teal user circle icon"></i></div>
+                  <div href="#">Signed in as <%=currentUser.username%> <i class="large purple user circle icon"></i></div>
                 </div>
 
                 <div class="item">

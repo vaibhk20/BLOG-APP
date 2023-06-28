@@ -2,7 +2,7 @@
 
 <style type="text/css">
   body {
-    background-color: #DADADA;
+    background-color: #f5f5f5;
   }
   body > .grid {
     height: 80%;
@@ -13,36 +13,35 @@
 </style>
 
 <div class="ui middle aligned center aligned grid">
-<div class="column">
-  <h2 class="ui teal image header">
-    <i class = "big teal edit icon"></i>
-    <div class="content">
-      Create a new Account
-    </div>
-  </h2>
-  <form class="ui large form" action="/register" method="POST">
-    <div class="ui stacked segment">
-      <div class="field">
-        <div class="ui left icon input">
-          <i class="user icon"></i>
-          <input type="text" name="username" placeholder="username">
+  <div class="column">
+    <h2 class="ui purple image header">
+      <i class="big purple edit icon"></i>
+      <div class="content">Create a new Account</div>
+    </h2>
+    <form class="ui large form" action="/register" method="POST">
+      <div class="ui stacked segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="text" name="username" placeholder="username" />
+          </div>
         </div>
-      </div>
-      <div class="field">
-        <div class="ui left icon input">
-          <i class=" lock icon"></i>
-          <input type="password" name="password" placeholder="Password">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="password" placeholder="Password" />
+          </div>
         </div>
+        <button type="submit" class="ui fluid large purple submit button">
+          Create
+        </button>
       </div>
-      <button type="submit" class="ui fluid large teal submit button">Create</button>
-    </div>
-  </form>
+    </form>
 
-  <div class="ui message">
-    Already have a account? <a href="/login">Login</a>
+    <div class="ui message">
+      Already have a account? <a href="/login">Login</a>
+    </div>
   </div>
 </div>
-</div>
-
 
 <%- include("partials/footer") %>
